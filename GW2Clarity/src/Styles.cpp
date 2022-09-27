@@ -238,6 +238,7 @@ void Styles::Load()
         styles_.push_back(s);
     }
 
+    // Set "default" style as first style
     if (styles_.empty() || styles_[0].name != "Default")
     {
         Style s;
@@ -249,7 +250,10 @@ void Styles::Load()
         else
         {
             s.name = "Default";
-            s.thresholds.emplace_back();
+            auto& threshold1 = s.thresholds.emplace_back();
+            threshold1.tint = {1, 0.5f, 0.5f, 0.33f};
+            auto& threshold2 = s.thresholds.emplace_back();
+            threshold2.threshold = 26;
         }
 
         styles_.insert(styles_.begin(), s);
